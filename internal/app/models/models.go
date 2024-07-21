@@ -4,7 +4,7 @@ import "gorm.io/gorm"
 
 type User struct {
 	gorm.Model
-	ID               uint   `gorm:"primaryKey"`
+	ID               int    `gorm:"primaryKey"`
 	Name             string `gorm:"size:100;not null"`
 	Email            string `gorm:"size:100;unique;not null"`
 	RegistrationDate string
@@ -14,13 +14,13 @@ type User struct {
 
 type Task struct {
 	gorm.Model
-	ID          uint   `gorm:"primaryKey"`
+	ID          int    `gorm:"primaryKey"`
 	Title       string `gorm:"size:100;not null"`
 	Description string `gorm:"size:255"`
 	Priority    string `gorm:"size:50"`
 	Status      string `gorm:"size:50"`
-	AssigneeID  uint
-	ProjectID   uint
+	AssigneeID  int
+	ProjectID   int
 	CreatedAt   string
 	CompletedAt string
 	User        User    `gorm:"foreignKey:AssigneeID"`
@@ -29,11 +29,11 @@ type Task struct {
 
 type Project struct {
 	gorm.Model
-	ID          uint   `gorm:"primaryKey"`
+	ID          int    `gorm:"primaryKey"`
 	Title       string `gorm:"size:100;not null"`
 	Description string `gorm:"size:255"`
 	StartDate   string
 	EndDate     string
-	ManagerID   uint
+	ManagerID   int
 	Tasks       []Task `gorm:"foreignKey:ProjectID"`
 }
